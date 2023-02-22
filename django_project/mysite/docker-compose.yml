@@ -9,10 +9,20 @@ services:
         links:
             - xray
         environment:
-            XRAY_DAEMON_ADDRESS: xray:2000
-            AWS_REGION: us-east-2
+          AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+          AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+          AWS_REGION: ${AWS_REGION}
+        depends_on:
+            - xray
 
 
     xray:
         image: amazon/aws-xray-daemon
-        entrypoint: /usr/bin/xray --local-mode -o
+        container_name: xray
+        command:  --local-mode
+        environment:
+          AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+          AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+          AWS_REGION: ${AWS_REGION}
+        ports:
+          - "2000:2000/udp"
