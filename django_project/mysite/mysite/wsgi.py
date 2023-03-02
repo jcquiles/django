@@ -8,11 +8,6 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
 import os
-import aws_xray_sdk.core import patch_all
-
-# Patch AWS SDKs to enable X-RAY tracing.
-patch_all()
-
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')

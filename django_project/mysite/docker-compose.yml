@@ -6,23 +6,23 @@ services:
         command: python manage.py runserver 0.0.0.0:8000
         ports:
             - 8000:8000
-        links:
-            - xray
-        environment:
-          AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-          AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-          AWS_REGION: ${AWS_REGION}
-        depends_on:
-            - xray
+        # links:
+        #     - xray
+        # environment:
+        #   AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        #   AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        #   AWS_REGION: ${AWS_REGION}
+        # depends_on:
+        #     - xray
 
 
-    xray:
-        image: amazon/aws-xray-daemon
-        container_name: xray
-        command:  --local-mode
-        environment:
-          AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-          AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-          AWS_REGION: ${AWS_REGION}
-        ports:
-          - "2000:2000/udp"
+    # xray:
+    #     image: amazon/aws-xray-daemon
+    #     container_name: xray
+    #     command:  --local-mode
+    #     environment:
+    #       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+    #       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    #       AWS_REGION: ${AWS_REGION}
+    #     ports:
+    #       - "2000:2000/udp"
