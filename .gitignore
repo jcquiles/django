@@ -1,6 +1,9 @@
 # Docker
 *.env
 
+#VSCODE
+*.vscode
+
 # Local .terraform directories
 **/.terraform/*
 
