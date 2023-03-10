@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'aws_xray_sdk.ext.django',
+    'aws_xray_sdk.ext.django',
     'myapp.apps.MyappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysite',
 ]
 
 MIDDLEWARE = [
-    # 'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
+    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,14 +53,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# XRAY_RECORDER = {
-#     'AUTO_INSTRUMENT': True,
-#     'AWS_XRAY_CONTEXT_MISSING': 'LOG_ERROR',
-#     'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
-#     'AWS_XRAY_TRACING_NAME': 'My application',
-#     # 'PLUGINS': ('ElasticBeanstalkPlugin', 'EC2Plugin', 'ECSPlugin'),
-#     'SAMPLING': False,
-# }
+XRAY_RECORDER = {
+    'AUTO_INSTRUMENT': True,
+    'AWS_XRAY_CONTEXT_MISSING': 'LOG_ERROR',
+    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
+    'AWS_XRAY_TRACING_NAME': 'My application',
+    # 'PLUGINS': ('ElasticBeanstalkPlugin', 'EC2Plugin', 'ECSPlugin'),
+    'SAMPLING': False,
+}
 
 
 ROOT_URLCONF = 'mysite.urls'
